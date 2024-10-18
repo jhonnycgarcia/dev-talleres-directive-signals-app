@@ -3,18 +3,18 @@
 
 <div class="row">
   <div class="col-4">
-    <h3>Usuario Actual:</h3>
+    <h3>Usuario Actual: {{userId()}}</h3>
 
-    <button class="btn btn-primary">Anterior</button>
+    <button class="btn btn-primary" (click)="loadUser(userId() - 1)">Anterior</button>
     &nbsp;
-    <button class="btn btn-primary">Siguiente</button>
+    <button class="btn btn-primary" (click)="loadUser(userId() + 1)">Siguiente</button>
   </div>
 
-  <div class="col-8">
-    <h3>Usuario:</h3>
-    <p>Corre:</p>
-    <p>Nombre:</p>
-    <img src="..." alt="Avatar">
+  <div class="col-8" *ngIf="currentUser()">
+    <h3>Usuario</h3>
+    <p>Corre: {{ currentUser()!.email }}</p>
+    <p>Nombre: {{ currentUser()!.first_name }} {{ currentUser()!.last_name }}</p>
+    <img [src]="currentUser()!.avatar" alt="Avatar" class="rounded">
   </div>
 
   <div class="col-8 text-danger">
